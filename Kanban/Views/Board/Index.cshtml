@@ -1,0 +1,67 @@
+﻿@model Kanban.VMs.BoardVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Model.Board</h1>
+<br/>
+<div>
+    <a asp-action="Create" asp-controller="Items">Add item</a>
+</div>
+<br/>
+<section id="board" class="row">
+    <section class="col-md-3">
+        <h5>To do</h5>
+        @foreach (var item in Model.ToDoItem)
+        {
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-body">
+                    <a asp-action="UpdateItem" asp-controller="Items" asp-route-itemId="@item.Id"><h5>@item</h5></a>
+                    <div class="card">
+                        <a class="btn btn-danger" asp-action="DeleteItem" asp-route-itemId="@item.Id">X</a>
+                        <a class="btn btn-primary" asp-action="MoveItem" asp-route-itemId="@item.Id" asp-route-columnId="2">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+
+    <section class="col-md-3">
+        <h5>Doing</h5>
+        @foreach (var item in Model.DoingItem)
+        {
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-body">
+                    <a asp-action="UpdateItem" asp-controller="Items" asp-route-itemId="@item.Id"><h5>@item</h5></a>
+                    <div class="card">
+                        <a class="btn btn-primary" asp-action="MoveItem" asp-route-itemId="@item.Id" asp-route-columnId="1">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                        <a class="btn btn-danger" asp-action="DeleteItem" asp-route-itemId="@item.Id">X</a>
+                        <a class="btn btn-primary" asp-action="MoveItem" asp-route-itemId="@item.Id" asp-route-columnId="3">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+
+    <section class="col-md-3">
+        <h5>Done</h5>
+        @foreach (var item in Model.DoneItem)
+        {
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-body">
+                    <a asp-action="UpdateItem" asp-controller="Items" asp-route-itemId="@item.Id"><h5>@item</h5></a>
+                    <div class="card">
+                        <a class="btn btn-danger" asp-action="DeleteItem" asp-route-itemId="@item.Id">X</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+</section>

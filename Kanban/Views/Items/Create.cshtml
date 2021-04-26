@@ -1,0 +1,43 @@
+﻿@using System.Collections.Specialized
+@model Kanban.Models.Item
+@{
+    ViewData["Title"] = "Create Task";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" asp-action="Create">
+    <br />
+    <div class="form-group">
+        <label asp-for="Title" style="max-width: 50px">Title</label>
+        <input asp-for="Title" class="form-control" style="margin-left: 20px; margin-right: 20px; max-width: 200px" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Notes" style="max-width: 50px">Notes</label>
+        <input asp-for="Notes" class="form-control" style="margin-left: 20px; margin-right: 20px; max-width: 200px" />
+        <span asp-validation-for="Notes" class="form-group"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Column" style="max-width: 50px">Column</label>
+        <select asp-for="@Model.ColumnId" class="form-control" style="margin-left: 20px; margin-right: 20px; max-width: 200px">
+            <option value="1">To Do</option>
+            <option value="2">Doing</option>
+            <option value="3">Done</option>
+        </select>
+        <div asp-validation-for="KanbanColumnId"></div>
+    </div>
+    <div asp-validation-summary="All"></div>
+    <br />
+    <button type="submit" class="btn btn-success">Submit</button>
+    <br/>
+</form>
+<hr />
+<div>
+    <a asp-action="Index" asp-controller="Board">Back to the board</a>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

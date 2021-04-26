@@ -1,0 +1,10 @@
+﻿@model Kanban.Models.Item
+<h1> Delete </h1>
+
+<p>Are you sure you want to delete the task: <br/> "@Model.Title"?</p>
+
+<form asp-action="Delete" asp-controller="Items" asp-route-itemId="@Model.Id">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Confirm" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
